@@ -1,3 +1,25 @@
 /* styles.css */
 
 /* Add styles here to customize the appearance of your app */
+* {
+    font-family: Roboto;
+}
+
+h1 {
+    color: purple;
+}
+
+.test {
+    width: 20px;
+    height: 20px;
+    /* background-color: grey; */
+    border: 1px solid grey;
+    display: inline-block;
+    /* margin: 2px; */
+    margin: 0px;
+}
+
+.test-row {
+    margin: 0;
+    height: 20px;
+}
