@@ -1,3 +1,31 @@
 /* styles.css */
 
 /* Add styles here to customize the appearance of your app */
+* {
+    font-family: Roboto;
+}
+
+h1 {
+    color: purple;
+}
+
+.grid-row {
+    margin: 0;
+    height: 20px;
+}
+
+.grid-square {
+    width: 30px;
+    height: 20px;
+    border: 1px solid lightgrey;
+    display: inline-block;
+    margin: 0px;
+}
+
+.grid-square:hover {
+    background-color: red;
+}
+
+.clicked {
+    background-color: blue;
+}
