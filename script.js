@@ -1,26 +1,35 @@
 $(document).ready(function(){
 
-    
-    function createGrid(totalRows, totalCols) {
+    // Need to include jQuery UI for sliders
 
-        // $("#canvas").text("Canvas Start");
+    function createGrid(totalRows, totalCols) {
     
+        // iterate through the rows
         for(let i=0; i<totalRows; i++) {
             
-            // create a new div for every row
-            newRow = $("<div></div>").addClass("test-row");
-            $("#canvas").append(newRow);
+            // create a new div for the row & add to grid
+            newRow = $("<div></div>").addClass("grid-row");
+            $("#grid").append(newRow);
     
+
+            // iterate through the columns
             for(let j=0; j<totalCols; j++) {
     
                 newRow.append(
-                    $("<p></p>")
-                        .addClass("test")
+                    $("<div></div>")
+                        .addClass("grid-square")
                 );
             }
-            
         }
     }
     
     createGrid(25, 20);
+
+
+    $(".grid-square").on("click", function() {
+        $(this).toggleClass('clicked');
+    });
+    
 });
+
+

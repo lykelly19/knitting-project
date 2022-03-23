@@ -9,17 +9,23 @@ h1 {
     color: purple;
 }
 
-.test {
-    width: 20px;
+.grid-row {
+    margin: 0;
     height: 20px;
-    /* background-color: grey; */
-    border: 1px solid grey;
+}
+
+.grid-square {
+    width: 30px;
+    height: 20px;
+    border: 1px solid lightgrey;
     display: inline-block;
-    /* margin: 2px; */
     margin: 0px;
 }
 
-.test-row {
-    margin: 0;
-    height: 20px;
+.grid-square:hover {
+    background-color: red;
+}
+
+.clicked {
+    background-color: blue;
 }
