@@ -22,10 +22,6 @@ h1 {
     margin: 0px;
 }
 
-.grid-square:hover {
-    background-color: red;
-}
-
 .clicked {
     background-color: blue;
 }

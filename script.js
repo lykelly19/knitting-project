@@ -1,6 +1,9 @@
 $(document).ready(function(){
 
-    // Need to include jQuery UI for sliders
+    pixelColorClass = "clicked";
+    pixelColor = "blue";
+    prevColor = "white";
+    setColor = "white";
 
     function createGrid(totalRows, totalCols) {
     
@@ -27,9 +30,32 @@ $(document).ready(function(){
 
 
     $(".grid-square").on("click", function() {
-        $(this).toggleClass('clicked');
+        // $(this).toggleClass(pixelColorClass);
+
+        // change the grid square's background color to the selected color
+        $(this).css("background-color", pixelColor);
+        setColor = pixelColor;
     });
-    
+
+    $('.grid-square').on('mouseenter', function() {
+        prevColor = $(this).css("background-color");
+        setColor = prevColor;
+
+        // change grid square hover background to the pixelColor
+        $(this).css("background-color", pixelColor);
+
+     }).on('mouseleave', function() {
+
+        // change back to initial color on mouseleave / not hovering
+         if(setColor != pixelColor)
+            $(this).css("background-color", prevColor);
+     });
+
+    $('#colorpicker').on('change', function() {
+        pixelColor = this.value;
+        pixelColorClass = "color-" + pixelColor.replace("#", "");
+    });
+
 });
 
 
