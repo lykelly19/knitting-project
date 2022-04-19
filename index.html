@@ -5,7 +5,8 @@
     <!-- https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP -->
     <!-- <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"> -->
     <link href="./styles.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Monoton">
+    <link rel="stylesheet" href="styles.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
@@ -16,6 +17,32 @@
       require('jquery-ui-dist/jquery-ui');
     </script>
     <title>Knitting Project!</title>
+
+    <style>
+      .item1 { grid-area: header; }
+      .item2 { grid-area: menu; }
+      .item3 { grid-area: main; }
+      .item4 { grid-area: footer; }
+      .item5 { grid-area: right; }
+      .grid-container {
+        display: grid;
+        grid:
+        'header header header header header header'
+        'menu main main main right right'
+        'menu footer footer footer footer footer';
+        grid-gap: 0px;
+        background-color: #fafafa;
+        padding: 0px;
+      }
+      
+      .grid-container > div {
+        background-color: #fafafa;
+        text-align: center;
+        padding: 0px;
+        font-size: 20px;
+      }
+      </style>
+
   </head>
   <body>
     <h1>Knitting Project!</h1>
@@ -24,36 +51,59 @@
     and Electron <span id="electron-version"></span>.
 
     <p><a href="pallette.html">Select Pallette</a></p>
-
+  
     <p>Here is our canvas:</p>
 
-    <label for="colorpicker">Color Picker</label>
-    <input type="color" id="colorpicker" value="#0000ff">
-
-    <div id="sample-colors">
-      <p>Preselected Colors</p>
-    </div>
-
-
-    <div id="grid"></div>
-    <div>
-      <button id="clear-grid">Clear Grid</button>
-      <div id="recently-selected">
-        <h3>Colors Used</h3>
+    <div class="grid-container">
+      <div class="item1">
+        <div id="ZoomButtons">
+          <button id="ZoomIn"> + </button>
+          <button id="ZoomOut"> - </button>
+        </div>
       </div>
+      <div class="item2">
+        <div id="MenuButtons">
+          <button id="import"> Import Image </button>
+          <button id="clearGrid"> Erase </button>
+
+          <!--<label for="numRows">Number of Rows: </label>
+          <input type="number" id="numRows" name="numRows"><br>
+          <div id="slider-rows"></div>
+          
+          <label for="numColumns">Number of Columns: </label>
+          <input type="number" id="numColumns" name="numColumns"><br>
+         <div id="slider-columns"></div>-->
+
+        </div>
+      </div>
+      <div class="item3">
+      <div class="container">
+      <div class="item"></div>
+       <div id="grid"></div>
+      </div> 
+      </div>  
+      <div class="item4">
+          <button id="save"> Save </button>
+          <button id="clear"> Clear Grid </button>
+
     </div>
+<div class="item5">
+  <select id="view-option">View Option</select>
+</div>
+</div>
 
-    <label for="numRows">Number of Rows: </label>
-    <input type="text" id="numRows" name="numRows"><br>
-    <div id="slider-rows"></div>
-
-
-
-    <div id = "slider-1"></div>
-    <p>Slider</p>
-
+<form id="sizePicker">
+  Columns:
+  <input type="number" id="inputColumn" name="height" min="1" value="1">
+  Rows:
+  <input type="number" id="inputRow" name="width" min="1" value="1">
+  <input type="submit">
+</form>
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="./script.js"></script>
   </body>
 </html>
+
+
