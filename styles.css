@@ -10,7 +10,7 @@ h1 {
 }
 
 .container {
-    display: grid
+    display: grid;
     grid-template-columns: 1fr 200px 1fr;
     grid-template-rows: 2fr 100px;
     justify-items:center;
@@ -162,5 +162,3 @@ right: 300px;
   body {
     text-align: center;
 }
-
-

@@ -1,0 +1,5 @@
+{
+    "pallette1": ["maroon", "red", "orange", "yellow", "lime", "olive", "green", "teal", "aqua", "blue", "fuchsia", "purple"],
+    "pallette2": ["#FEC5BB", "#FCD5CE", "#FAE1DD", "#F8EDEB", "#E8E8E4", "#D8E2DC", "#ECE4DB", "#FFE5D9", "#FFD7BA", "#FEC89A"],
+    "pallette3": ["#B7094C", "#A01A58", "#892B64", "#723C70", "#5C4D7D", "#455E89", "#2E6F95", "#1780A1", "#0091AD"]
+}

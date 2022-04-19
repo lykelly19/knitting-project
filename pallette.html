@@ -1,0 +1,79 @@
+<!-- Goals: 
+    Create pallette page to get 10 colors (or give suggestions)
+    Allow user to select 10 colors. Upload image and select pixel from image 
+-->
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Include jQuery -->
+    <script>window.$ = window.jQuery = require('jquery'); 
+      require('jquery-ui-dist/jquery-ui');  
+    </script>
+    <script type="text/javascript" src="data.json"></script>
+
+    <title>Color Pallette</title>
+    <style>
+        .selected-square {
+            width: 20px;
+            height: 20px;
+            margin-right: 3px;
+            border: 1px solid black;
+            display: inline-block;
+        }
+
+        #sample-colors {
+            margin-bottom: 20px;
+        }
+
+        img {
+            width: 200px;
+            display: block;
+        }
+
+        #result {
+          width: 200px;
+          height: 200px;
+        }
+
+    </style>
+  </head>
+  <body>
+
+    
+    <h1>Select Color Pallette!</h1>
+
+    <label for="img">Upload an image:</label>
+    <input type="file" id="img" name="img" accept="image/*">
+
+    <button id="start-button">Open Eyedropper</button>
+    <div id="result">
+    </div>
+
+    <div id="sample-colors">
+        <p>Sample Color Pallettes</p>
+    </div>
+
+    <label for="colorpicker">Color Picker</label>
+    <input type="color" id="colorpicker" value="#0000ff">
+
+    <p>My Color Pallette</p>
+    <p>Currently Selected Color:</p>
+
+
+    <button id="addColor">Add to pallette</button>
+
+
+
+
+    <script src="./pallette.js"></script>
+  </body>
+</html>
