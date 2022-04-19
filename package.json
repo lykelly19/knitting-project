@@ -1,25 +1,16 @@
 {
-  "name": "electron-quick-start",
+  "name": "knitting-project",
+  "productName": "knitting-project",
+  "description": "My Electron application description",
+  "keywords": [],
+  "main": "./main.js",
   "version": "1.0.0",
-  "description": "A minimal Electron application",
-  "main": "main.js",
+  "author": "nande",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
-  "keywords": [
-    "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
-  ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "dependencies": {},
   "devDependencies": {
-    "electron": "^17.1.2"
-  },
-  "dependencies": {
-    "jquery": "^3.6.0"
+    "electron": "16.0.6"
   }
 }
