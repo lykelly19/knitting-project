@@ -12,7 +12,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
 
     <!-- Include jQuery -->
-    <script>window.$ = window.jQuery = require('jquery');</script>
+    <script>window.$ = window.jQuery = require('jquery'); 
+      require('jquery-ui-dist/jquery-ui');
+    </script>
     <title>Knitting Project!</title>
   </head>
   <body>
@@ -21,10 +23,16 @@
     Chromium <span id="chrome-version"></span>,
     and Electron <span id="electron-version"></span>.
 
+    <p><a href="pallette.html">Select Pallette</a></p>
+
     <p>Here is our canvas:</p>
 
     <label for="colorpicker">Color Picker</label>
     <input type="color" id="colorpicker" value="#0000ff">
+
+    <div id="sample-colors">
+      <p>Preselected Colors</p>
+    </div>
 
 
     <div id="grid"></div>
@@ -38,6 +46,11 @@
     <label for="numRows">Number of Rows: </label>
     <input type="text" id="numRows" name="numRows"><br>
     <div id="slider-rows"></div>
+
+
+
+    <div id = "slider-1"></div>
+    <p>Slider</p>
 
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
