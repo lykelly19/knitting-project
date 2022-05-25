@@ -10,9 +10,6 @@ h1 {
 }
 
 .container {
-    display: grid;
-    grid-template-columns: 1fr 200px 1fr;
-    grid-template-rows: 2fr 100px;
     justify-items:center;
     align-items:center;
     grid-column: auto;
@@ -27,7 +24,7 @@ h1 {
   border:none;
 }
 
-#clear{
+#clear-grid {
   background-color: #C4C4C4;
   margin: 10px;
   vertical-align: top;
@@ -40,15 +37,7 @@ h1 {
   transform: matrix(1, 0, 0, 0, 0 );
 }
 
-#clear-grid {
-  margin-top: 15px;
-  padding: 5px 20px;
-  background-color: aquamarine;
-  border: none;
-  
-}
-
-#clear-grid:hover {
+button:hover {
   opacity: 70%;
 }
 
@@ -141,24 +130,64 @@ right: 300px;
     height: 20px;
   }
   
-  .grid-square {
-      width: 30px;
-      height: 20px;
-      border: 1px solid lightgrey;
-      display: inline-block;
-      align-items: center;
-      justify-items: center;
+.grid-square {
+  width: 30px;
+  height: 20px;
+  border: 1px solid lightgrey;
+  display: inline-block;
+  align-items: center;
+  justify-items: center;
+  background-color: white;
+}
 
-  }
-  
-  .grid-square:hover {
-      background-color: grey;
-  }
-  
   .clicked {
       background-color: blue;
   }
 
   body {
     text-align: center;
+}
+
+
+
+
+
+
+
+
+.selected-square {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border: 1px solid black;
+  display: inline-block;
+  filter: drop-shadow(0.1rem 0.1rem 0.1rem black);
+}
+
+#saved-palettes, #sample-colors {
+  margin-bottom: 20px;
+}
+
+.selected-square{
+  border-radius: 50%;
+  border: none;
+}
+
+.color-pallette-colors {
+  border: 1px solid #0000008A;
+  border-radius: 20px;
+  padding: 15px;
+  margin-bottom: 10px;
+  display: inline-block;
+  background-color: white;
+}
+
+.color-pallette {
+  margin-bottom: 20px;
+}
+
+
+button:hover {
+  cursor: pointer;
+  opacity: 70%;
 }

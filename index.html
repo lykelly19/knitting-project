@@ -36,7 +36,7 @@
       }
       
       .grid-container > div {
-        background-color: #fafafa;
+        background-color: #E7F1FF;
         text-align: center;
         padding: 0px;
         font-size: 20px;
@@ -46,13 +46,11 @@
   </head>
   <body>
     <h1>Knitting Project!</h1>
-    We are using Node.js <span id="node-version"></span>,
+    <!-- We are using Node.js <span id="node-version"></span>,
     Chromium <span id="chrome-version"></span>,
-    and Electron <span id="electron-version"></span>.
+    and Electron <span id="electron-version"></span>. -->
 
     <p><a href="pallette.html">Select Pallette</a></p>
-  
-    <p>Here is our canvas:</p>
 
     <div class="grid-container">
       <div class="item1">
@@ -61,10 +59,14 @@
           <button id="ZoomOut"> - </button>
         </div>
       </div>
+
       <div class="item2">
         <div id="MenuButtons">
-          <button id="import"> Import Image </button>
-          <button id="clearGrid"> Erase </button>
+          <button id="import">Import Image</button>
+          <button id="erase">Erase</button>
+          <div id="sample-colors">
+            <p>Color Palette</p>
+          </div>
 
           <!--<label for="numRows">Number of Rows: </label>
           <input type="number" id="numRows" name="numRows"><br>
@@ -84,21 +86,26 @@
       </div>  
       <div class="item4">
           <button id="save"> Save </button>
-          <button id="clear"> Clear Grid </button>
+          <button id="clear-grid">Clear Grid</button>
 
     </div>
+
+
+
+
+
 <div class="item5">
   <select id="view-option">View Option</select>
 </div>
 </div>
 
-<form id="sizePicker">
+<!-- <form id="sizePicker">
   Columns:
   <input type="number" id="inputColumn" name="height" min="1" value="1">
   Rows:
   <input type="number" id="inputRow" name="width" min="1" value="1">
   <input type="submit">
-</form>
+</form> -->
     <!-- You can also require other files to run in this process -->
     <script src="./renderer.js"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

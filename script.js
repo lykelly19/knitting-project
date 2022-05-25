@@ -2,27 +2,23 @@
  const $inputColumn = $('#inputColumn');
  const $inputRow = $('#inputRow');
 
-  //Need to include jQuery UI for sliders
 
-  
-$('#sizePicker').submit( event => {
-  event.preventDefault();
+// $('#sizePicker').submit( event => {
+//   event.preventDefault();
 
-  let width = $inputColumn.val();
-  let height = $inputRow.val();
+//   let width = $inputColumn.val();
+//   let height = $inputRow.val();
 
-  $gridElement.html(''); //clear
+//   $gridElement.html(''); //clear
 
 
-  createGrid(height, width);
-});
-
+//   createGrid(height, width);
+// });
 
 
 
 function createGrid(totalRows, totalCols) {
-    console.log(totalCols);
-    console.log(totalRows);
+
          //iterate through the rows
         for(let i=0; i<totalRows; i++) {
             
@@ -37,45 +33,46 @@ function createGrid(totalRows, totalCols) {
                    $("<div></div>")
                         .addClass("grid-square")
                 );
-                console.log(newRow);
-
            }
         }
 }
 
 
-function createSampleColors() {
+function createSelectedPaletteColors(colors) {
 
-    colors = ["maroon", "red", "orange", "yellow", "lime", "olive", "green", "teal", "aqua", "blue", "fuchsia", "purple"];
+    pallette = $("<div></div>").addClass("color-pallette");
+    paletteDiv = $("<div></div>").addClass("color-pallette-colors");
 
     for(let i=0; i<colors.length; i++) {
 
         newColorBlock = $("<div></div>").addClass("selected-square");
         newColorBlock.css("background-color", colors[i]);
 
-        $("#sample-colors").append(newColorBlock);
+        $(paletteDiv).append(newColorBlock);
     }
+
+    $("#sample-colors").append(paletteDiv);    
 }
 
 
-$(document).ready(function(){
-
-
-    $( "#slider-1" ).slider();
-     
-    
+$(document).ready(function(){    
 
     pixelColorClass = "color-0000ff";
     pixelColor = "#0000ff";
     prevColor = "white";
     setColor = "white";
 
-    
-    // createGrid(25, 20);
-    // createSampleColors();
+    var gridDataJson = require('./grid-data.json');
+
+    createGrid(gridDataJson["canvasRows"], gridDataJson["canvasColumns"]);
+    createSelectedPaletteColors(gridDataJson["selectedPaletteColors"]);
+
+    // set initial default pixel color to the first color of the palette
+    pixelColor = gridDataJson["selectedPaletteColors"][0];
 
 
     $(".grid-square").on("click", function() {
+
         $(this).toggleClass(pixelColorClass);
 
         // change the grid square's background color to the selected color
@@ -100,9 +97,6 @@ $(document).ready(function(){
 
             $("#recently-selected").append(recentlySelectedBlock);
 
-
-
-
             // add input for changing color
             $("<input></input>").attr({
                 type: "color", 
@@ -114,6 +108,7 @@ $(document).ready(function(){
     });
 
     $('.grid-square').on('mouseenter', function() {
+
         prevColor = $(this).css("background-color");
         setColor = prevColor;
 
@@ -121,7 +116,6 @@ $(document).ready(function(){
         $(this).css("background-color", pixelColor);
 
     }).on('mouseleave', function() {
-
         // change back to initial color on mouseleave / not hovering
         if(setColor != pixelColor)
             $(this).css("background-color", prevColor);
@@ -167,6 +161,11 @@ $(document).ready(function(){
         pixelColorClass = "color-" + pixelColor.replace("#", "");
     });
 
+
+    $(".grid-square").on("click", $(this), function() {
+        console.log("h");
+
+    });
 
 
     // change pattern color based on color picker
@@ -227,3 +226,9 @@ $(document).ready(function(){
  // function windowResized(){
    //   createGrid.position(((windowWidth - width)/2)+95, ((windowHeight - height)/2));
  // }:
+
+
+// set pixel color to white when erase button is clicked
+$('#erase').on('click', function() {
+    pixelColor = "#FFFFFF";
+});

@@ -2,11 +2,14 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 
+console.log('test');
+console.log(app.getPath('userData'));
+
 function createWindow () {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    width: 800,
-    height: 600,
+    width: 1200,
+    height: 1500,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
