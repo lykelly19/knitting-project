@@ -16,6 +16,6 @@
     "jquery-ui-dist": "^1.13.1"
   },
   "devDependencies": {
-    "electron": "^17.1.2"
+    "electron": "^19.0.1"
   }
 }
