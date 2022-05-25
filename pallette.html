@@ -33,7 +33,8 @@
 
     
     <h1>Welcome to the Knitting Project!</h1>
-    <a href="index.html"><button id="back-button">Back</button></a>
+    <a href="index.html"><button>Back</button></a>
+    <button id="continue-button">Save</button>
 
 
     <div class="container">
@@ -46,55 +47,67 @@
 
       <h3 class="item-c">Choose Canvas Size:</h3>
 
-      <label for="fname" class="item-g">Columns</label>
-      <input type="text" class="item-i" id="fname" name="fname"><br>
+      <label for="canvas-columns" class="item-g">Columns</label>
+      <input type="number" class="item-i" id="canvas-columns" name="canvas-columns" min="1"><br>
 
-      <label for="fname" class="item-h">Rows</label>
-      <input type="text" class="item-j" id="fname" name="fname"><br>
+      <label for="canvas-rows" class="item-h">Rows</label>
+      <input type="number" class="item-j" id="canvas-rows" name="canvas-rows" min="1"><br>
 
 
-      <h3 class="item-d">Image placeholder</h3>
+      <!-- <h3 class="item-d">Image placeholder</h3> -->
 
       <h3 class="item-e">Choose Gauge Size:</h3>
-      <label for="fname" class="item-l">Stitches</label>
-      <input type="text" class="item-m" id="fname" name="fname"><br>
+      <label for="gauge-stitches" class="item-l">Stitches</label>
+      <input type="number" class="item-m" id="gauge-stitches" name="gauge-stitches" min="1"><br>
 
-      <label for="fname" class="item-n">Rows</label>
-      <input type="text" class="item-o" id="fname" name="fname"><br>
-
+      <label for="gauge-rows" class="item-n">Rows</label>
+      <input type="number" class="item-o" id="gauge-rows" name="gauge-rows" min="1"><br>
       
     </div>
     
     <div class="container-2">
-      <h3 class="item">Choose up to 10 Colors</h3>
+      <div class="column">
+        <h3 class="item">Choose up to 10 Colors</h3>
 
       
+        <label for="colorpicker">Color Picker</label>
+        <input type="color" id="colorpicker" value="#0000ff">
+  
+        <h3>Choose Color from Image:</h3>
+        <button id="eyedropper-button">Eyedropper</button>
+  
+  
+  
+        <p>Currently Selected Color:</p>
+        <div id="currently-selected"></div>
+        <button id="addColor">Add to new pallette</button>
+  
+        <h3>New Palette</h3>
+        <div id="palette-colors"></div>
+        <p>Palette Name:</p>
+        <input id="paletteName"></input>
+        <button id="savePalette">Save palette</button>
+  
+        <h3>Selected Palette</h3>
+        <div id="selected-palette"></div>
 
-      <label for="colorpicker">Color Picker</label>
-      <input type="color" id="colorpicker" value="#0000ff">
+      </div>
 
-      <h3>Choose Color from Image:</h3>
-      <button id="eyedropper-button">Eyedropper</button>
+      <div class="column">
+        <h3>Saved Palettes</h3>
+        <div id="saved-palettes"></div>
+  
+        <h3>Sample Palettes</h3>
+        <div id="sample-colors"></div>
 
-
-
-      <p>Currently Selected Color:</p>
-      <div id="currently-selected"></div>
-      <button id="addColor">Add to current pallette</button>
-
-      <h3>Current Palette</h3>
-      <div id="palette-colors"></div>
-      <p>Palette Name:</p>
-      <input id="paletteName"></input>
-      <button id="savePalette">Save palette</button>
+      </div>
 
 
+     
 
-      <h3>Saved Palettes</h3>
-      <div id="saved-palettes"></div>
+    
 
-      <h3>Sample Palettes</h3>
-      <div id="sample-colors"></div>
+
     </div>
 
 

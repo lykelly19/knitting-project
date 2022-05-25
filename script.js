@@ -2,27 +2,23 @@
  const $inputColumn = $('#inputColumn');
  const $inputRow = $('#inputRow');
 
-  //Need to include jQuery UI for sliders
 
-  
-$('#sizePicker').submit( event => {
-  event.preventDefault();
+// $('#sizePicker').submit( event => {
+//   event.preventDefault();
 
-  let width = $inputColumn.val();
-  let height = $inputRow.val();
+//   let width = $inputColumn.val();
+//   let height = $inputRow.val();
 
-  $gridElement.html(''); //clear
+//   $gridElement.html(''); //clear
 
 
-  createGrid(height, width);
-});
-
+//   createGrid(height, width);
+// });
 
 
 
 function createGrid(totalRows, totalCols) {
-    console.log(totalCols);
-    console.log(totalRows);
+
          //iterate through the rows
         for(let i=0; i<totalRows; i++) {
             
@@ -42,24 +38,20 @@ function createGrid(totalRows, totalCols) {
 }
 
 
-function createSampleColors() {
+function createSelectedPaletteColors(colors) {
 
-    // colors = ["maroon", "red", "orange", "yellow", "lime", "olive", "green", "teal", "aqua", "blue", "fuchsia", "purple"];
+    pallette = $("<div></div>").addClass("color-pallette");
+    paletteDiv = $("<div></div>").addClass("color-pallette-colors");
 
-    // read JSON file
+    for(let i=0; i<colors.length; i++) {
 
-    var palletteJson = require('./saved-colors.json');
+        newColorBlock = $("<div></div>").addClass("selected-square");
+        newColorBlock.css("background-color", colors[i]);
 
-
-    for(let key in palletteJson) {
-        for(let i=0; i<palletteJson[key].length; i++) {
-
-            newColorBlock = $("<div></div>").addClass("selected-square");
-            newColorBlock.css("background-color", palletteJson[key][i]);
-    
-            $("#sample-colors").append(newColorBlock);
-        }
+        $(paletteDiv).append(newColorBlock);
     }
+
+    $("#sample-colors").append(paletteDiv);    
 }
 
 
@@ -70,9 +62,13 @@ $(document).ready(function(){
     prevColor = "white";
     setColor = "white";
 
-    
-    createGrid(25, 20);
-    createSampleColors();
+    var gridDataJson = require('./grid-data.json');
+
+    createGrid(gridDataJson["canvasRows"], gridDataJson["canvasColumns"]);
+    createSelectedPaletteColors(gridDataJson["selectedPaletteColors"]);
+
+    // set initial default pixel color to the first color of the palette
+    pixelColor = gridDataJson["selectedPaletteColors"][0];
 
 
     $(".grid-square").on("click", function() {
@@ -113,13 +109,8 @@ $(document).ready(function(){
 
     $('.grid-square').on('mouseenter', function() {
 
-
-        console.log($(this).css("background-color"));
         prevColor = $(this).css("background-color");
         setColor = prevColor;
-
-        console.log(prevColor);
-        console.log(setColor);
 
         // change grid square hover background to the pixelColor
         $(this).css("background-color", pixelColor);
@@ -235,3 +226,9 @@ $(document).ready(function(){
  // function windowResized(){
    //   createGrid.position(((windowWidth - width)/2)+95, ((windowHeight - height)/2));
  // }:
+
+
+// set pixel color to white when erase button is clicked
+$('#erase').on('click', function() {
+    pixelColor = "#FFFFFF";
+});

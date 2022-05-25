@@ -4,18 +4,6 @@ const fs = require('fs');
 $(document).ready(function(){
 
     showSavedPalettes();
-    // const os = require('os');
-    // const storage = require('electron-json-storage');
-
-    // storage.setDataPath("/Users/kellyly/Documents/Programs/Knitting-UML/knitting-project/");
-    
-    // console.log(storage.getDataPath());
-    // console.log('test');
-
-    // https://stackoverflow.com/questions/33289110/saving-json-in-electron
-
-
-    // generate all palettes
     showSamplePalettes();
 
 
@@ -122,7 +110,7 @@ function createSampleColors(colors) {
     }
 
     $(pallette).append(paletteDiv);
-    $(pallette).append("<button>+</button>");
+    $(pallette).append('<button class="add-button">+</button>');
 
     $("#sample-colors").append(pallette);
 }
@@ -193,7 +181,6 @@ $('#savePalette').on('click', function() {
     // need to lower/camel-case?
     var paletteName = $("#paletteName").val();
 
-
     var palletteJson = require('./saved-colors.json');
 
     palletteJson[paletteName] = getPaletteColors();
@@ -217,6 +204,8 @@ function showSamplePalettes() {
 }
 
 function showSavedPalettes() {
+
+    $("#saved-palettes").empty();
 
     // read in JSON
     var paletteJson = require('./saved-colors.json');
@@ -244,7 +233,72 @@ function createSavedColors(colors, paletteName) {
     paletteNameP = $("<p></p>").text(paletteName);
     $(pallette).append(paletteNameP);
     $(pallette).append(paletteDiv);
-    $(pallette).append("<button>+</button>");
+    $(pallette).append('<button class="add-button">+</button>');
 
     $("#saved-palettes").append(pallette);
 }
+
+
+$("#continue-button").on("click", function() {
+    
+    var gridDataJson = require('./grid-data.json');
+
+
+    // validate data
+    gridDataJson["canvasColumns"] = $("#canvas-columns").val();
+    gridDataJson["canvasRows"] = $("#canvas-rows").val();
+    gridDataJson["gaugeStitches"] = $("#gauge-stitches").val();
+    gridDataJson["gaugeRows"] = $("#gauge-rows").val();
+
+
+
+    // selected color palette
+
+
+    let data = JSON.stringify(gridDataJson);
+    fs.writeFileSync('grid-data.json', data);
+});
+
+
+// clicking the plus button
+$("#saved-palettes, #sample-colors").on("click", "button", function() {
+
+    colorElements = $(this).prev().children();
+
+    let selectedPaletteColors = [];
+
+    const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
+
+    for(let i=0; i<colorElements.length; i++)
+        selectedPaletteColors.push(rgba2hex(colorElements[i].style.backgroundColor));
+
+
+    var gridDataJson = require('./grid-data.json');
+    gridDataJson["selectedPaletteColors"] = selectedPaletteColors;
+
+    let data = JSON.stringify(gridDataJson);
+    fs.writeFileSync('grid-data.json', data);
+
+
+
+
+    // show selected palette
+
+    // clear any selected palette
+    $("#selected-palette").empty();
+
+    pallette = $("<div></div>").addClass("color-pallette");
+    paletteDiv = $("<div></div>").addClass("color-pallette-colors");
+
+    for(let i=0; i<selectedPaletteColors.length; i++) {
+
+        newColorBlock = $("<div></div>").addClass("selected-square");
+        newColorBlock.css("background-color", selectedPaletteColors[i]);
+
+        $(paletteDiv).append(newColorBlock);
+    }
+
+    paletteNameP = $("<p></p>").text(paletteName);
+    $(pallette).append(paletteDiv);
+    $("#selected-palette").append(pallette);
+});

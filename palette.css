@@ -112,58 +112,18 @@ input {
 
 
 .container-2 {
-    display: grid;
+    display: flex;
     background-color: #E7F1FF;
     margin: 20px;
     padding: 30px;
     border-radius: 15px;
-
-    /* grid-template-areas:
-    "a a b b k k k p"
-    "c c g i d d d d"
-    "c c h j d d d d"
-    "e e l m f f f f"
-    "e e n o f f f f"
-    ; */
-    align-items: start;
-    overflow: scroll;
 }
 
-/*   
-.grid-label {
-    grid-column-start: 1;
-    grid-column-end: 2;
+.column {
+    flex: 50%;
 }
-
-.grid-label2 {
-    grid-column-start: 1;
-    grid-column-end: 2;
-}
-
-.grid-dim-info {
-
-    grid-column-start: 2;
-    grid-column-end: 3;
-}
-
-.placeholder {
-    grid-column-start: 2;
-    grid-column-end: 4;
-}
-
-.color-from-img {
-    grid-column-start: 4;
-    grid-column-end: 5;
-}
-
-.color-from-img-buttons {
-    grid-column-start: 5;
-    grid-column-end: 6;
-} */
-
 
 label {
-    font-family: Montserrat, sans-serif;
     font-weight: 400;
 }
 
@@ -176,26 +136,27 @@ label {
 
 
 .selected-square {
-    width: 25px;
-    height: 25px;
-    margin-right: 3px;
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
     border: 1px solid black;
     display: inline-block;
+    filter: drop-shadow(0.1rem 0.1rem 0.1rem black);
 }
 
 #saved-palettes, #sample-colors {
     margin-bottom: 20px;
 }
 
-#saved-palettes .selected-square, #sample-colors .selected-square{
+.selected-square{
     border-radius: 50%;
     border: none;
 }
 
 .color-pallette-colors {
-    border: 1px solid black;
+    border: 1px solid #0000008A;
     border-radius: 20px;
-    padding: 10px;
+    padding: 15px;
     margin-bottom: 10px;
     display: inline-block;
     background-color: white;
@@ -241,4 +202,8 @@ button:hover {
     height: 20px;
     border: 1px solid rgba(0, 0, 0, 0.54);
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.add-button {
+    background-color: #989FAA;
 }
