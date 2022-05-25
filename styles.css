@@ -27,7 +27,7 @@ h1 {
   border:none;
 }
 
-#clear{
+#clear-grid {
   background-color: #C4C4C4;
   margin: 10px;
   vertical-align: top;
@@ -40,15 +40,7 @@ h1 {
   transform: matrix(1, 0, 0, 0, 0 );
 }
 
-#clear-grid {
-  margin-top: 15px;
-  padding: 5px 20px;
-  background-color: aquamarine;
-  border: none;
-  
-}
-
-#clear-grid:hover {
+button:hover {
   opacity: 70%;
 }
 
@@ -141,24 +133,42 @@ right: 300px;
     height: 20px;
   }
   
-  .grid-square {
-      width: 30px;
-      height: 20px;
-      border: 1px solid lightgrey;
-      display: inline-block;
-      align-items: center;
-      justify-items: center;
+.grid-square {
+  width: 30px;
+  height: 20px;
+  border: 1px solid lightgrey;
+  display: inline-block;
+  align-items: center;
+  justify-items: center;
+  background-color: white;
+}
 
-  }
-  
-  .grid-square:hover {
-      background-color: grey;
-  }
-  
   .clicked {
       background-color: blue;
   }
 
   body {
     text-align: center;
+}
+
+
+
+
+
+
+#sample-colors {
+  margin-bottom: 20px;
+}
+
+#sample-colors .selected-square{
+  border-radius: 50%;
+  border: none;
+}
+
+.selected-square {
+  width: 25px;
+  height: 25px;
+  margin-right: 3px;
+  border: 1px solid black;
+  display: inline-block;
 }

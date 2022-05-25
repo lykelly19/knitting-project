@@ -37,8 +37,6 @@ function createGrid(totalRows, totalCols) {
                    $("<div></div>")
                         .addClass("grid-square")
                 );
-                console.log(newRow);
-
            }
         }
 }
@@ -46,24 +44,26 @@ function createGrid(totalRows, totalCols) {
 
 function createSampleColors() {
 
-    colors = ["maroon", "red", "orange", "yellow", "lime", "olive", "green", "teal", "aqua", "blue", "fuchsia", "purple"];
+    // colors = ["maroon", "red", "orange", "yellow", "lime", "olive", "green", "teal", "aqua", "blue", "fuchsia", "purple"];
 
-    for(let i=0; i<colors.length; i++) {
+    // read JSON file
 
-        newColorBlock = $("<div></div>").addClass("selected-square");
-        newColorBlock.css("background-color", colors[i]);
+    var palletteJson = require('./saved-colors.json');
 
-        $("#sample-colors").append(newColorBlock);
+
+    for(let key in palletteJson) {
+        for(let i=0; i<palletteJson[key].length; i++) {
+
+            newColorBlock = $("<div></div>").addClass("selected-square");
+            newColorBlock.css("background-color", palletteJson[key][i]);
+    
+            $("#sample-colors").append(newColorBlock);
+        }
     }
 }
 
 
-$(document).ready(function(){
-
-
-    $( "#slider-1" ).slider();
-     
-    
+$(document).ready(function(){    
 
     pixelColorClass = "color-0000ff";
     pixelColor = "#0000ff";
@@ -71,11 +71,12 @@ $(document).ready(function(){
     setColor = "white";
 
     
-    // createGrid(25, 20);
-    // createSampleColors();
+    createGrid(25, 20);
+    createSampleColors();
 
 
     $(".grid-square").on("click", function() {
+
         $(this).toggleClass(pixelColorClass);
 
         // change the grid square's background color to the selected color
@@ -100,9 +101,6 @@ $(document).ready(function(){
 
             $("#recently-selected").append(recentlySelectedBlock);
 
-
-
-
             // add input for changing color
             $("<input></input>").attr({
                 type: "color", 
@@ -114,14 +112,19 @@ $(document).ready(function(){
     });
 
     $('.grid-square').on('mouseenter', function() {
+
+
+        console.log($(this).css("background-color"));
         prevColor = $(this).css("background-color");
         setColor = prevColor;
+
+        console.log(prevColor);
+        console.log(setColor);
 
         // change grid square hover background to the pixelColor
         $(this).css("background-color", pixelColor);
 
     }).on('mouseleave', function() {
-
         // change back to initial color on mouseleave / not hovering
         if(setColor != pixelColor)
             $(this).css("background-color", prevColor);
@@ -167,6 +170,11 @@ $(document).ready(function(){
         pixelColorClass = "color-" + pixelColor.replace("#", "");
     });
 
+
+    $(".grid-square").on("click", $(this), function() {
+        console.log("h");
+
+    });
 
 
     // change pattern color based on color picker

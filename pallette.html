@@ -8,11 +8,15 @@
 <html>
   <head>
     <meta charset="UTF-8">
+    <link href="./palette.css" rel="stylesheet">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"> 
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
-    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <!-- <link rel="stylesheet" href="./node_modules/bootstrap/dist/css/bootstrap.min.css" /> -->
 
     <!-- Include jQuery -->
     <script>window.$ = window.jQuery = require('jquery'); 
@@ -20,59 +24,87 @@
     </script>
     <script type="text/javascript" src="data.json"></script>
 
+    <!-- require Bootstrap -->
+    <!-- <script>require('bootstrap');</script> -->
+
     <title>Color Pallette</title>
-    <style>
-        .selected-square {
-            width: 20px;
-            height: 20px;
-            margin-right: 3px;
-            border: 1px solid black;
-            display: inline-block;
-        }
-
-        #sample-colors {
-            margin-bottom: 20px;
-        }
-
-        img {
-            width: 200px;
-            display: block;
-        }
-
-        #result {
-          width: 200px;
-          height: 200px;
-        }
-
-    </style>
   </head>
   <body>
 
     
-    <h1>Select Color Pallette!</h1>
+    <h1>Welcome to the Knitting Project!</h1>
+    <a href="index.html"><button id="back-button">Back</button></a>
 
-    <label for="img">Upload an image:</label>
+
+    <div class="container">
+      <!-- <h3 class="item-a">Choose Color Palette</h3>
+      <p class="item-b">Placeholder for palette</p> -->
+      <!-- <h3 class="item-k">Choose Color from Image:</h3>
+      <button class="item-p" id="start-button">Import image</button> -->
+      <!-- <button class="item-q">test-q</button> -->
+
+
+      <h3 class="item-c">Choose Canvas Size:</h3>
+
+      <label for="fname" class="item-g">Columns</label>
+      <input type="text" class="item-i" id="fname" name="fname"><br>
+
+      <label for="fname" class="item-h">Rows</label>
+      <input type="text" class="item-j" id="fname" name="fname"><br>
+
+
+      <h3 class="item-d">Image placeholder</h3>
+
+      <h3 class="item-e">Choose Gauge Size:</h3>
+      <label for="fname" class="item-l">Stitches</label>
+      <input type="text" class="item-m" id="fname" name="fname"><br>
+
+      <label for="fname" class="item-n">Rows</label>
+      <input type="text" class="item-o" id="fname" name="fname"><br>
+
+      
+    </div>
+    
+    <div class="container-2">
+      <h3 class="item">Choose up to 10 Colors</h3>
+
+      
+
+      <label for="colorpicker">Color Picker</label>
+      <input type="color" id="colorpicker" value="#0000ff">
+
+      <h3>Choose Color from Image:</h3>
+      <button id="eyedropper-button">Eyedropper</button>
+
+
+
+      <p>Currently Selected Color:</p>
+      <div id="currently-selected"></div>
+      <button id="addColor">Add to current pallette</button>
+
+      <h3>Current Palette</h3>
+      <div id="palette-colors"></div>
+      <p>Palette Name:</p>
+      <input id="paletteName"></input>
+      <button id="savePalette">Save palette</button>
+
+
+
+      <h3>Saved Palettes</h3>
+      <div id="saved-palettes"></div>
+
+      <h3>Sample Palettes</h3>
+      <div id="sample-colors"></div>
+    </div>
+
+
+
+<!-- <label for="img">Upload an image:</label>
     <input type="file" id="img" name="img" accept="image/*">
 
-    <button id="start-button">Open Eyedropper</button>
-    <div id="result">
-    </div>
 
-    <div id="sample-colors">
-        <p>Sample Color Pallettes</p>
-    </div>
-
-    <label for="colorpicker">Color Picker</label>
-    <input type="color" id="colorpicker" value="#0000ff">
-
-    <p>My Color Pallette</p>
-    <p>Currently Selected Color:</p>
-
-
-    <button id="addColor">Add to pallette</button>
-
-
-
+<div id="result">
+    </div> -->
 
     <script src="./pallette.js"></script>
   </body>
