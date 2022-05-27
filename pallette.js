@@ -1,4 +1,4 @@
-var currPixelColor = "white";
+var currPixelColor = "#FFFFFF";
 const fs = require('fs');
 
 $(document).ready(function(){
@@ -6,48 +6,43 @@ $(document).ready(function(){
     showSavedPalettes();
     showSamplePalettes();
 
-
     $('#addColor').on('click', function() {
 
-            // if color block doesn't already exist in recently selected, add new color block
-            // if(!$('#recently-selected div').hasClass(pixelColorClass)) {
-    
-            //     recentlySelectedBlock = $("<div></div>");
-            //     recentlySelectedBlock.addClass("recently-selected-block");
-    
-            //     textBlock = $("<p></p>");
-            //     textBlock.text(pixelColor);
-    
-                newColorBlock = $("<div></div>").addClass("selected-square");
-                newColorBlock.css("background-color", currPixelColor);
+        // if color block doesn't already exist in recently selected, add new color block            
+        colorElements = $("#palette-colors").children();
 
-                console.log(newColorBlock);
-                // newColorBlock.addClass(pixelColorClass);
-    
-                // recentlySelectedBlock.append(newColorBlock);
-                // recentlySelectedBlock.append(textBlock);
-    
-                $("#palette-colors").append(newColorBlock);
-            // }
+        if(colorElements.length > 0) {
+
+            const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
+        
+            for(let i=0; i<colorElements.length; i++)
+                if(rgba2hex(colorElements[i].style.backgroundColor) == currPixelColor) 
+                    return;
+
+        }
+
+        newColorBlock = $("<div></div>").addClass("selected-square");
+        newColorBlock.css("background-color", currPixelColor);
+
+        $("#palette-colors").append(newColorBlock);
+
     });
-
-
-
 });
 
 
-// https://stackoverflow.com/questions/12368910/html-display-image-after-selecting-filename
-
 $("#fileInput").change(function(e) {
+
     for (var i = 0; i < e.originalEvent.srcElement.files.length; i++) {
 
-        var reader = new FileReader();
+        var file = e.originalEvent.srcElement.files[i];
 
-        reader.onload = function (e) {
-          $('#display-img').attr('src', e.target.result).width(150).height(200);
-        };
-    
-        reader.readAsDataURL(input.files[0]);
+        var img = document.createElement("img");
+        var reader = new FileReader();
+        reader.onloadend = function() {
+            img.src = reader.result;
+        }
+        reader.readAsDataURL(file);
+        $("#fileInput").after(img);
     }
 });
 
@@ -149,30 +144,22 @@ function setCurrentSelection() {
 
 
 function getPaletteColors() {
-    console.log("get palette colors");
+    
     paletteColors = $("#palette-colors").children().map(function(){ return $(this).attr('background-color') });
 
-   let color = $("#palette-colors").children().css("background-color");
+    let color = $("#palette-colors").children().css("background-color");
 
-   console.log(color);
-   console.log($("#palette-colors").attr('background-color'));
-   
     var colorsArray = [];
     var getChild = $("#palette-colors").children();
 
-   const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
+    const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
 
 
     getChild.each(function(i,v){
-    // push in fruits array, an array of data-fruit
         colorsArray.push((rgba2hex($(v).css('background-color'))));
     })
 
     return colorsArray;
-
-
-   // change the grid square's background color to the selected color
-   //console.log(rgba2hex(color));
 }
 
 
@@ -188,10 +175,8 @@ $('#savePalette').on('click', function() {
     let data = JSON.stringify(palletteJson);
     fs.writeFileSync('saved-colors.json', data);
 
-
     // regenerate palettes
     showSavedPalettes();
-
 });
 
 
