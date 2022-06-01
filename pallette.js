@@ -6,6 +6,16 @@ $(document).ready(function(){
     showSavedPalettes();
     showSamplePalettes();
 
+
+    var gridDataJson = require('./grid-data.json');
+
+    // default input values for columns & rows based on saved values
+    $("#canvas-rows").attr("value", gridDataJson["canvasRows"]);
+    $("#canvas-columns").attr("value", gridDataJson["canvasColumns"]);
+    $("#gauge-stitches").attr("value", gridDataJson["gaugeStitches"]);
+    $("#gauge-rows").attr("value", gridDataJson["gaugeRows"]);
+
+
     $('#addColor').on('click', function() {
 
         // if color block doesn't already exist in recently selected, add new color block            
