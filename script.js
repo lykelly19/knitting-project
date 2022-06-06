@@ -3,6 +3,7 @@
  const $inputRow = $('#inputRow');
 
  const fs = require('fs');
+ var pnglib = require('pnglib');
 
 
 // $('#sizePicker').submit( event => {
@@ -83,11 +84,6 @@ $(document).ready(function(){
         $(this).css("background-color", pixelColor);
         setColor = pixelColor;
 
-        // save the grid colors to the JSON
-        saveGridColors();
-
-
-
 
 
 
@@ -147,8 +143,6 @@ $(document).ready(function(){
 
         // clear out color blocks from recently added
         $("#recently-selected div").remove();
-
-        saveGridColors();
     });
 
 
@@ -283,4 +277,56 @@ function setSavedGridColors() {
         row++;
     });
 
+
+
+    // testing
+
+    var pixels = gridDataJson["gridColorsArr"]; // your massive array
+
+    var p = new pnglib(200, 200, 256);
+
+
+    for(let i = 0; i < pixels.length; i++) {
+        for(let j=0; j<gridDataJson["gridColorsArr"][i].length; j++) {
+
+            pixel = gridDataJson["gridColorsArr"][i][j];
+
+            r = hexToRgb(pixel)["r"];
+            g = hexToRgb(pixel)["g"];
+            b = hexToRgb(pixel)["b"];
+
+            p.buffer[p.index(i, j)] = p.color(r, g, b);
+        }
+
+
+    }
+    
+
+    mySrc = "data:image/png;base64," + p.getBase64();
+    // document.write('<img src="data:image/png;base64,' + p.getBase64() + '">');
+
+    var z = document.createElement('img');
+    z.id = "test";
+    z.src = mySrc;
+    document.body.appendChild(z);
+
+
+
 }
+
+
+// https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+}
+  
+
+// save the grid colors to the JSON when save button is clicked
+$("#save").on("click", function() {
+    saveGridColors();
+});
