@@ -207,3 +207,15 @@ button:hover {
   cursor: pointer;
   opacity: 70%;
 }
+
+
+#test {
+  width: 200px;
+  height: 200px;
+}
+
+
+#test img {
+  width: 200px;
+  height: 200px;
+}

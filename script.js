@@ -2,6 +2,9 @@
  const $inputColumn = $('#inputColumn');
  const $inputRow = $('#inputRow');
 
+ const fs = require('fs');
+ var pnglib = require('pnglib');
+
 
 // $('#sizePicker').submit( event => {
 //   event.preventDefault();
@@ -15,32 +18,34 @@
 //   createGrid(height, width);
 // });
 
-let count = 0
+const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
 
 function createGrid(totalRows, totalCols) {
 
-         //iterate through the rows
-        for(let i=0; i<totalRows; i++) {
-            
-            // create a new div for the row & add to grid
-            newRow = $(`<div> </div>`).addClass("grid-row");
-            // newRow.append(
-                // $(`<div>${count}</div>`)
-                    //  .addClass("grid-square")                
-            //  );
-            $("#grid").append(newRow);
-            //  count++
-            
-            // iterate through the columns
-            for(let j=0; j<totalCols; j++) {
-    
-               newRow.append(
-                   $("<div></div>")
-                        .addClass("grid-square")
-                    
-                );
-           }
+    let count = 0
+
+    // iterate through the rows
+    for(let i=0; i<totalRows; i++) {
+        
+        // create a new div for the row & add to grid
+        newRow = $("<div></div>").addClass("grid-row");
+        $("#grid").append(newRow);
+
+        // newRow.append(
+        // $(`<div>${count}</div>`)
+        //  .addClass("grid-square")                
+        //  );
+        //  count++
+        
+        // iterate through the columns
+        for(let j=0; j<totalCols; j++) {
+
+            newRow.append(
+                $("<div></div>")
+                    .addClass("grid-square")
+            );
         }
+    }
 }
 
 
@@ -71,6 +76,7 @@ $(document).ready(function(){
     var gridDataJson = require('./grid-data.json');
 
     createGrid(gridDataJson["canvasRows"], gridDataJson["canvasColumns"]);
+    setSavedGridColors();
     createSelectedPaletteColors(gridDataJson["selectedPaletteColors"]);
 
     // set initial default pixel color to the first color of the palette
@@ -85,32 +91,36 @@ $(document).ready(function(){
         $(this).css("background-color", pixelColor);
         setColor = pixelColor;
 
+
+
+
+
         // if color block doesn't already exist in recently selected, add new color block
-        if(!$('#recently-selected div').hasClass(pixelColorClass)) {
+        // if(!$('#recently-selected div').hasClass(pixelColorClass)) {
 
-            recentlySelectedBlock = $("<div></div>");
-            recentlySelectedBlock.addClass("recently-selected-block");
+        //     recentlySelectedBlock = $("<div></div>");
+        //     recentlySelectedBlock.addClass("recently-selected-block");
 
-            textBlock = $("<p></p>");
-            textBlock.text(pixelColor);
+        //     textBlock = $("<p></p>");
+        //     textBlock.text(pixelColor);
 
-            newColorBlock = $("<div></div>").addClass("recently-selected-square");
-            newColorBlock.css("background-color", setColor)
-            newColorBlock.addClass(pixelColorClass);
+        //     newColorBlock = $("<div></div>").addClass("recently-selected-square");
+        //     newColorBlock.css("background-color", setColor)
+        //     newColorBlock.addClass(pixelColorClass);
 
-            recentlySelectedBlock.append(newColorBlock);
-            recentlySelectedBlock.append(textBlock);
+        //     recentlySelectedBlock.append(newColorBlock);
+        //     recentlySelectedBlock.append(textBlock);
 
-            $("#recently-selected").append(recentlySelectedBlock);
+        //     $("#recently-selected").append(recentlySelectedBlock);
 
-            // add input for changing color
-            $("<input></input>").attr({
-                type: "color", 
-                value: pixelColor,
-                class: "recently-selected-picker"
-            }
-            ).appendTo("#recently-selected");
-        }
+        //     // add input for changing color
+        //     $("<input></input>").attr({
+        //         type: "color", 
+        //         value: pixelColor,
+        //         class: "recently-selected-picker"
+        //     }
+        //     ).appendTo("#recently-selected");
+        // }
     });
 
     $('.grid-square').on('mouseenter', function() {
@@ -165,12 +175,6 @@ $(document).ready(function(){
         // change the grid square's background color to the selected color
         pixelColor = rgba2hex($(this).css("background-color"));
         pixelColorClass = "color-" + pixelColor.replace("#", "");
-    });
-
-
-    $(".grid-square").on("click", $(this), function() {
-        console.log("h");
-
     });
 
 
@@ -237,4 +241,99 @@ $(document).ready(function(){
 // set pixel color to white when erase button is clicked
 $('#erase').on('click', function() {
     pixelColor = "#FFFFFF";
+});
+
+function saveGridColors() {
+
+    let colorsArr = [];
+
+    $('#grid').children('.grid-row').each(function () {
+
+        colorsArrRow = [];
+
+        $(this).children('.grid-square').each(function() {
+            colorsArrRow.push(rgba2hex($(this).css("background-color")));
+        });
+
+        colorsArr.push(colorsArrRow);
+    });
+
+
+    var gridDataJson = require('./grid-data.json');
+    gridDataJson["gridColorsArr"] = colorsArr;
+
+    let data = JSON.stringify(gridDataJson);
+    fs.writeFileSync('grid-data.json', data);
+}
+
+function setSavedGridColors() {
+
+    var gridDataJson = require('./grid-data.json');
+    let row = 0;
+
+    $('#grid').children('.grid-row').each(function () {
+
+        let col = 0;
+
+        $(this).children('.grid-square').each(function() {
+
+            $(this).css("background-color", gridDataJson["gridColorsArr"][row][col]);
+            col++;
+        });
+
+        row++;
+    });
+
+
+
+    // testing
+
+    var pixels = gridDataJson["gridColorsArr"]; // your massive array
+
+    var p = new pnglib(200, 200, 256);
+
+
+    for(let i = 0; i < pixels.length; i++) {
+        for(let j=0; j<gridDataJson["gridColorsArr"][i].length; j++) {
+
+            pixel = gridDataJson["gridColorsArr"][i][j];
+
+            r = hexToRgb(pixel)["r"];
+            g = hexToRgb(pixel)["g"];
+            b = hexToRgb(pixel)["b"];
+
+            p.buffer[p.index(i, j)] = p.color(r, g, b);
+        }
+
+
+    }
+    
+
+    mySrc = "data:image/png;base64," + p.getBase64();
+    // document.write('<img src="data:image/png;base64,' + p.getBase64() + '">');
+
+    var z = document.createElement('img');
+    z.id = "test";
+    z.src = mySrc;
+    document.body.appendChild(z);
+
+
+
+}
+
+
+// https://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+      r: parseInt(result[1], 16),
+      g: parseInt(result[2], 16),
+      b: parseInt(result[3], 16)
+    } : null;
+}
+  
+
+// save the grid colors to the JSON when save button is clicked
+$("#save").on("click", function() {
+    saveGridColors();
 });
