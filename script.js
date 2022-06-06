@@ -15,7 +15,7 @@
 //   createGrid(height, width);
 // });
 
-
+let count = 0
 
 function createGrid(totalRows, totalCols) {
 
@@ -23,8 +23,13 @@ function createGrid(totalRows, totalCols) {
         for(let i=0; i<totalRows; i++) {
             
             // create a new div for the row & add to grid
-            newRow = $("<div></div>").addClass("grid-row");
+            newRow = $(`<div> </div>`).addClass("grid-row");
+            // newRow.append(
+                // $(`<div>${count}</div>`)
+                    //  .addClass("grid-square")                
+            //  );
             $("#grid").append(newRow);
+            //  count++
             
             // iterate through the columns
             for(let j=0; j<totalCols; j++) {
@@ -32,6 +37,7 @@ function createGrid(totalRows, totalCols) {
                newRow.append(
                    $("<div></div>")
                         .addClass("grid-square")
+                    
                 );
            }
         }
