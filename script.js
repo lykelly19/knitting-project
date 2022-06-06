@@ -20,8 +20,9 @@
 
 const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
 
-
 function createGrid(totalRows, totalCols) {
+
+    let count = 0
 
     // iterate through the rows
     for(let i=0; i<totalRows; i++) {
@@ -29,6 +30,12 @@ function createGrid(totalRows, totalCols) {
         // create a new div for the row & add to grid
         newRow = $("<div></div>").addClass("grid-row");
         $("#grid").append(newRow);
+
+        // newRow.append(
+        // $(`<div>${count}</div>`)
+        //  .addClass("grid-square")                
+        //  );
+        //  count++
         
         // iterate through the columns
         for(let j=0; j<totalCols; j++) {
