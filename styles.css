@@ -19,36 +19,60 @@ h1 {
   display: none;
 }
 
-#import{
-  background-color: #1477F8;
+/* #import{
+  background-color: #14f82b;
   color: white;
-  margin: 10px;
-  /*vertical-align: top;*/
-  border:none;
-}
-
-#editPallete{
-    padding: 8px 14px;
-    border-radius: 20px;
-    background-color: #5FA4FE;
-    color: white;
-    font-family: Montserrat, sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-}
-
-#clear-grid {
-  background-color: #C4C4C4;
   margin: 10px;
   vertical-align: top;
   border:none;
-  left: 400px;
-  right: 300px;
+} */
+
+#editPallete{
+    background-color: #5FA4FE;
+    color: white;
+    margin: 10px;
+    vertical-align: top;
+    border:none;
+    border-radius: 20px;
+    padding: 8px 14px;
+    font-family: Montserrat, sans-serif;
+    font-weight: 500;
+    font-size: 16px;
+    filter: drop-shadow(0px 4px 4px rgba(100, 100, 100, 0.25));
+    transform: matrix(1, 0, 0, 0, 0 );
+   
+}
+
+#swapPallete{
+  background-color: #5FA4FE;
+  color: white;
+  margin: 10px;
+  vertical-align: top;
+  border:none;
   border-radius: 20px;
-  padding: 15px;
+  padding: 8px 14px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
   filter: drop-shadow(0px 4px 4px rgba(100, 100, 100, 0.25));
   transform: matrix(1, 0, 0, 0, 0 );
 }
+
+#clear-grid {
+  vertical-align: top;
+  border:none;
+  border-radius: 20px;
+  padding: 8px 14px;
+  margin: 10px;
+  background-color: #989FAA;
+  color: white;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  filter: drop-shadow(0px 4px 4px rgba(100, 100, 100, 0.25));
+  transform: matrix(1, 0, 0, 0, 0 );
+}
+
 
 button:hover {
   opacity: 70%;
@@ -60,25 +84,27 @@ button:hover {
   margin: 10px;
   vertical-align: top;
   border:none;
-  left: 400px;
-  right: 300px;
   border-radius: 20px;
-  padding: 15px;
+  padding: 8px 14px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
   filter: drop-shadow(0px 4px 4px rgba(100, 100, 100, 0.25));
   transform: matrix(1, 0, 0, 0, 0 );
 }
 
 
-#view-option{
+#export-button{
   background-color: #2b333d;
   color: white;
   margin: 10px;
   vertical-align: top;
   border:none;
-  height: 50px;
-  width: 150px;
   border-radius: 20px;
-  padding: 0px;
+  padding: 8px 14px;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
   filter: drop-shadow(0px 4px 4px rgba(100, 100, 100, 0.25));
   transform: matrix(1, 0, 0, 0, 0 );
 }
@@ -126,9 +152,6 @@ right: 300px;
 }
 
 #MenuButtons button{
- border: none;
- border-radius: 20px;
- padding: 15px;
  filter: drop-shadow(0px 4px 4px rgba(100, 100, 100, 0.25));
  transform: matrix(1, 0, 0, 0, 0 );
 }
