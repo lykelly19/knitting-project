@@ -69,14 +69,16 @@
     
     <div class="container-2">
       <div class="column">
-        <h3 class="item">Choose up to 10 Colors</h3>
+        <h3 class="item">Create Palette Colors</h3>
 
       
-        <label for="colorpicker">Color Picker</label>
+        <label for="colorpicker"><strong>Color Picker:</strong></label>
         <input type="color" id="colorpicker" value="#0000ff">
   
-        <h3>Choose Color from Image:</h3>
-        <button id="eyedropper-button">Eyedropper</button>
+        <div id="choose-color">
+          <h4 id="choose-color-text">Choose Color from Image:</h4>
+          <button id="eyedropper-button">Eyedropper</button>
+        </div>
         <img id="testImage">
 
         <label for="img">Upload an image:</label>
@@ -85,13 +87,13 @@
   
   
   
-        <p>Currently Selected Color:</p>
+        <p id="currently-selected-text"><strong>Currently Selected Color:</strong></p>
         <div id="currently-selected"></div>
         <button id="addColor">Add to new pallette</button>
   
-        <h3>New Palette</h3>
+        <h3 id="new-palette-text">New Palette</h3>
         <div id="palette-colors"></div>
-        <p>Palette Name:</p>
+        <p id="palette-name-text">Palette Name:</p>
         <input id="paletteName"></input>
         <button id="savePalette">Save palette</button>
   
@@ -116,9 +118,9 @@
 
 
     </div>
-
+<!-- 
     <button id="continue-button">Save</button>
-    <a href="index.html" id="done-button"><button>Done</button></a>
+    <a href="index.html" id="done-button"><button>Done</button></a> -->
 
 
 <!-- <label for="img">Upload an image:</label>
