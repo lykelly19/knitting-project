@@ -14,6 +14,11 @@ h3 {
     font-size: 20px;
 }  
 
+#navbuttons{
+    display: flex;
+    justify-content: right;
+
+}
 .container {
     display: grid;
     background-color: #E7F1FF;
@@ -131,11 +136,6 @@ label {
 
 
 
-
-
-
-
-
 .selected-square {
     width: 24px;
     height: 24px;
@@ -180,6 +180,7 @@ img {
 button {
     all: unset;
     padding: 8px 14px;
+    margin: 10px;
     border-radius: 20px;
     background-color: #5FA4FE;
     color: white;
@@ -205,6 +206,7 @@ button:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+
 .add-button {
     background-color: #989FAA;
 }
@@ -220,4 +222,5 @@ button:hover {
     margin-right: 25px;
     display: inline-block;
 }
+
 

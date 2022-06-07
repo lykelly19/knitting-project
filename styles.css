@@ -136,15 +136,38 @@ right: 300px;
 .grid-row {
     margin: 0;
     height: 20px;
+    display:flex;
     align-items: center;
     justify-content: center;
+    
   }
+
+.grid-rowtop{
+  margin: 0;
+  height: 20px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
   
-  .grid-column{
+}
+  
+/* .grid-column{
     margin:0;
     height: 20px;
-  }
-  
+    width: 30px;
+} */
+
+.grid-box {
+  width: 30px;
+  height: 20px;
+  display: flex;
+  border: 1px solid #E7F1FF; 
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  font-size: 12px;
+}
+
 .grid-square {
   width: 30px;
   height: 20px;
