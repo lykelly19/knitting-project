@@ -6,48 +6,84 @@
  var pnglib = require('pnglib');
 
 
-// $('#sizePicker').submit( event => {
-//   event.preventDefault();
-
-//   let width = $inputColumn.val();
-//   let height = $inputRow.val();
-
-//   $gridElement.html(''); //clear
-
-
-//   createGrid(height, width);
-// });
 
 const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
 
 function createGrid(totalRows, totalCols) {
 
-    let count = 0
+    let count = 1
+//adds numbers to the top and bottom of grid 
+    let newRow = $("<div></div>").addClass("grid-rowtop");
+    newRow.append($("<div></div>")
+    .addClass("grid-box")
+    );
 
-    // iterate through the rows
-    for(let i=0; i<totalRows; i++) {
+    for(let j=0; j < totalCols; j++) {
+    if (j - 1 < totalCols ) {    
+            newRow.append(
+            $(`<div>${j+1}</div>`)
+             .addClass("grid-box")            
+             )}
+            } //<----------------
+            
+            newRow.append(
+               $(`<div></div>`)
+                .addClass("grid-box")
+            )
+            $("#grid").append(newRow);
+        // iterate through the rows
+            for(let i=0; i<totalRows; i++) {
         
         // create a new div for the row & add to grid
-        newRow = $("<div></div>").addClass("grid-row");
+        let newRow = $("<div></div>").addClass("grid-row");
         $("#grid").append(newRow);
 
-        // newRow.append(
-        // $(`<div>${count}</div>`)
-        //  .addClass("grid-square")                
-        //  );
-        //  count++
+        newRow.append(
+        $(`<div>${count}</div>`)
+         .addClass("grid-box")
+        //  .addClass("number-square")             
+         );
+      
         
         // iterate through the columns
-        for(let j=0; j<totalCols; j++) {
+        for(let j=0; j < totalCols; j++) {
 
             newRow.append(
                 $("<div></div>")
                     .addClass("grid-square")
             );
         }
-    }
-}
+        
 
+        newRow.append(
+            $(`<div>${count}</div>`)
+             .addClass("grid-box")
+            //  .addClass("number-square")             
+             );
+             count++
+    }
+
+    newRow = $("<div></div>").addClass("grid-rowtop");
+    newRow.append($("<div></div>")
+    .addClass("grid-box")
+);
+    $("#grid").append(newRow);
+    
+    for(let j=0; j < totalCols; j++) {
+        if (j - 1 < totalCols  ) {    
+                newRow.append(
+                $(`<div>${j+1}</div>`)
+                 .addClass("grid-box")
+                //  .addClass("number-square")             
+                 )}
+                } //<----------------
+                
+                newRow.append(
+                   $(`<div></div>`)
+                    .addClass("grid-box")
+                )
+
+}
 
 function createSelectedPaletteColors(colors) {
 
