@@ -1,11 +1,8 @@
- const $gridElement = $('#grid');
- const $inputColumn = $('#inputColumn');
- const $inputRow = $('#inputRow');
+const $gridElement = $('#grid');
+const $inputColumn = $('#inputColumn');
+const $inputRow = $('#inputRow');
 
- const fs = require('fs');
- var pnglib = require('pnglib');
-
-
+const fs = require('fs');
 
 const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
 
@@ -234,24 +231,15 @@ $(document).ready(function(){
     }).on('change','input', function(){
         var prev = $(this).data('val');
         var current = $(this).val();
-        console.log("Prev value " + prev);
 
         prevClass = "color-" + prev.substring(1);
-        console.log(prevClass);
-
 
         pixelColor = this.value;
-        console.log(pixelColor);
         pixelColorClass = "color-" + pixelColor.replace("#", "");
 
 
         $(prevClass).css("background-color", pixelColor);
         $(prevClass).css("padding", "100px");
-
-        console.log("New value " + current);
-
-
-        console.log(pixelColorClass);
     });
 
     $("#export-button").on("click", function() {
@@ -340,42 +328,6 @@ function setSavedGridColors() {
 
         row++;
     });
-
-
-
-    // testing
-
-    var pixels = gridDataJson["gridColorsArr"]; // your massive array
-
-    var p = new pnglib(200, 200, 256);
-
-
-    for(let i = 0; i < pixels.length; i++) {
-        for(let j=0; j<gridDataJson["gridColorsArr"][i].length; j++) {
-
-            pixel = gridDataJson["gridColorsArr"][i][j];
-
-            r = hexToRgb(pixel)["r"];
-            g = hexToRgb(pixel)["g"];
-            b = hexToRgb(pixel)["b"];
-
-            p.buffer[p.index(i, j)] = p.color(r, g, b);
-        }
-
-
-    }
-    
-
-    mySrc = "data:image/png;base64," + p.getBase64();
-    // document.write('<img src="data:image/png;base64,' + p.getBase64() + '">');
-
-    var z = document.createElement('img');
-    z.id = "test";
-    z.src = mySrc;
-    document.body.appendChild(z);
-
-
-
 }
 
 

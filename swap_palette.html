@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link href="./palette.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"> 
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> 
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Roboto&display=swap" rel="stylesheet">
+
+    <!-- Include jQuery -->
+    <script>window.$ = window.jQuery = require('jquery'); 
+      require('jquery-ui-dist/jquery-ui');  
+    </script>
+    <script type="text/javascript" src="data.json"></script>
+    <style>
+      #swap-description {
+        margin-right: 70px;
+      }
+
+    </style>
+
+    <title>Color Pallette</title>
+  </head>
+  <body>
+    <div class="container-2">
+
+      <div class="column">
+        <h2>Swap Color Palettes</h2>
+        <p id="swap-description">Please note that the palette colors in the swap will correspond 1 to 1</p>
+        
+        <h3>Selected Palette</h3>
+        <div id="selected-palette"></div>
+      </div>
+
+      <div class="column">
+        <h3>Saved Palettes</h3>
+        <div id="saved-palettes"></div>
+        <h3>Sample Palettes</h3>
+        <div id="sample-colors"></div>
+        
+        <div id="saved-colors"></div>
+      </div>
+    </div>
+
+    <a href="index.html"><button id="done-button">Back</button></a>
+    <script src="./swap_palette.js"></script>
+
+  </body>
+</html>

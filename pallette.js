@@ -177,7 +177,6 @@ function getPaletteColors() {
 
 $('#savePalette').on('click', function() {
 
-    // need to lower/camel-case?
     var paletteName = $("#paletteName").val();
 
     var palletteJson = require('./saved-colors.json');
@@ -276,7 +275,7 @@ $("#saved-palettes, #sample-colors").on("click", "button", function() {
 
 
 
-function generateSelectedPalette() {
+function generateSelectedPalette(selectedPaletteColors) {
     // clear any selected palette
     $("#selected-palette").empty();
 
