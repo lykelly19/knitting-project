@@ -244,7 +244,7 @@ button:hover {
 }
 
 #palette-name-text {
-    margin-bottom: 0px;
+    margin-bottom: -10px;
 }
 
 #choose-color {

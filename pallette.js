@@ -9,10 +9,12 @@ $(document).ready(function(){
     showSavedPalettes();
     showSamplePalettes();
 
-
     var gridDataJson = require('./grid-data.json');
 
     selectedPaletteColors = gridDataJson["selectedPaletteColors"];
+
+    generateSelectedPalette(selectedPaletteColors);
+
 
 
     // default input values for columns & rows based on saved values
@@ -100,9 +102,7 @@ document.getElementById('eyedropper-button').addEventListener('click', () => {
 
     setTimeout(() => {
         abortController.abort();
-    }, 2000);
-
-
+    }, 5000);
 });
 
 
@@ -270,7 +270,13 @@ $("#saved-palettes, #sample-colors").on("click", "button", function() {
     for(let i=0; i<colorElements.length; i++)
         selectedPaletteColors.push(rgba2hex(colorElements[i].style.backgroundColor));
 
+    generateSelectedPalette(selectedPaletteColors);
+});
 
+
+
+
+function generateSelectedPalette() {
     // clear any selected palette
     $("#selected-palette").empty();
 
@@ -288,4 +294,4 @@ $("#saved-palettes, #sample-colors").on("click", "button", function() {
     paletteNameP = $("<p></p>").text(paletteName);
     $(pallette).append(paletteDiv);
     $("#selected-palette").append(pallette);
-});
+}
