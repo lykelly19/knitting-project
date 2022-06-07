@@ -242,3 +242,8 @@ button:hover {
   width: 200px;
   height: 200px;
 }
+
+/* print with background color showing - https://stackoverflow.com/questions/14987496/background-color-not-showing-in-print-preview */
+@media print {
+  body {-webkit-print-color-adjust: exact;}
+}

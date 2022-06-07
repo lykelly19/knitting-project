@@ -254,6 +254,27 @@ $(document).ready(function(){
         console.log(pixelColorClass);
     });
 
+    $("#export-button").on("click", function() {
+
+        // https://stackoverflow.com/questions/12997123/print-specific-part-of-webpage
+        var prtContent = document.getElementById("grid");
+        var WinPrint = window.open('', '', 'left=0,top=0,width=800,height=900,toolbar=0,scrollbars=0,status=0');
+        
+        WinPrint.document.write('<link rel="stylesheet" type="text/css" href="./styles.css">');
+        
+        WinPrint.document.write(prtContent.innerHTML);
+        WinPrint.document.close();
+        WinPrint.setTimeout(function(){
+          WinPrint.focus();
+          WinPrint.print();
+          WinPrint.close();
+        }, 1000);
+    });
+
+
+    
+
+
 
 });
 
