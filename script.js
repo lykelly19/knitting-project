@@ -345,6 +345,7 @@ function hexToRgb(hex) {
 // save the grid colors to the JSON when save button is clicked
 $("#save").on("click", function() {
     saveGridColors();
+    alert("Grid progress has been saved");
 });
 
 

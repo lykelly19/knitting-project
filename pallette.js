@@ -254,6 +254,8 @@ $("#continue-button").on("click", function() {
 
     let data = JSON.stringify(gridDataJson);
     fs.writeFileSync('grid-data.json', data);
+
+    alert("Data has been successfully saved");
 });
 
 
