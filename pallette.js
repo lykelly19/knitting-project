@@ -1,6 +1,9 @@
 var currPixelColor = "#FFFFFF";
 const fs = require('fs');
 
+
+var selectedPaletteColors = [];
+
 $(document).ready(function(){
 
     showSavedPalettes();
@@ -8,6 +11,9 @@ $(document).ready(function(){
 
 
     var gridDataJson = require('./grid-data.json');
+
+    selectedPaletteColors = gridDataJson["selectedPaletteColors"];
+
 
     // default input values for columns & rows based on saved values
     $("#canvas-rows").attr("value", gridDataJson["canvasRows"]);
@@ -131,12 +137,8 @@ $("#result, #sample-colors, #saved-palettes").on("click", ".recently-selected-sq
     pixelColor = rgba2hex($(this).css("background-color"));
     pixelColorClass = "color-" + pixelColor.replace("#", "");
 
-    console.log(pixelColor);
-
     // add to currently selected color
     currPixelColor = pixelColor;
-
-    console.log(currPixelColor);
 
     setCurrentSelection();
 });
@@ -248,6 +250,7 @@ $("#continue-button").on("click", function() {
 
 
     // selected color palette
+    gridDataJson["selectedPaletteColors"] = selectedPaletteColors;
 
 
     let data = JSON.stringify(gridDataJson);
@@ -260,24 +263,13 @@ $("#saved-palettes, #sample-colors").on("click", "button", function() {
 
     colorElements = $(this).prev().children();
 
-    let selectedPaletteColors = [];
+    selectedPaletteColors = [];
 
     const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
 
     for(let i=0; i<colorElements.length; i++)
         selectedPaletteColors.push(rgba2hex(colorElements[i].style.backgroundColor));
 
-
-    var gridDataJson = require('./grid-data.json');
-    gridDataJson["selectedPaletteColors"] = selectedPaletteColors;
-
-    let data = JSON.stringify(gridDataJson);
-    fs.writeFileSync('grid-data.json', data);
-
-
-
-
-    // show selected palette
 
     // clear any selected palette
     $("#selected-palette").empty();

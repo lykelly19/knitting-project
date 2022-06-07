@@ -4,6 +4,7 @@
 
 h1 {
     color: #1477F8;
+    margin-left: 20px;
 }
 
 h3 {
@@ -205,12 +206,21 @@ button:hover {
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-#culo{
-    border: none;
-    
-
-}
 
 .add-button {
     background-color: #989FAA;
 }
+
+#continue-button {
+    margin-left: 20px;
+    display: inline-block;
+    background-color: #33373E;
+}
+
+#done-button {
+    margin-top: 20px;
+    margin-right: 25px;
+    display: inline-block;
+}
+
+

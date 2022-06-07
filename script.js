@@ -373,3 +373,27 @@ function hexToRgb(hex) {
 $("#save").on("click", function() {
     saveGridColors();
 });
+
+
+
+$("#ZoomIn").on("click", function() {
+
+    zoomLevel = $("#grid").css("zoom");
+
+    if (zoomLevel == 1) {
+        $("#grid").css("zoom", "120%");
+    } else if (zoomLevel == 0.8) {
+        $("#grid").css("zoom", "100%");
+    }
+});
+
+$("#ZoomOut").on("click", function() {
+
+    zoomLevel = $("#grid").css("zoom");
+
+    if (zoomLevel == 1) {
+        $("#grid").css("zoom", "80%");
+    } else if (zoomLevel == 1.2) {
+        $("#grid").css("zoom", "100%");
+    }
+});
