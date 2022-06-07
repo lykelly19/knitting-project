@@ -85,9 +85,10 @@ function createGrid(totalRows, totalCols, gaugeStitches, gaugeRows) {
     // modify CSS of grid square based on ratio
     $(".grid-square").css({"width": gaugeRows});
     $(".grid-square").css({"height": gaugeStitches});
-
     $(".grid-box").css({"width": gaugeRows});
     $(".grid-box").css({"height": gaugeStitches});
+
+
 }
 
 function createSelectedPaletteColors(colors) {
@@ -328,11 +329,15 @@ function setSavedGridColors() {
 
         let col = 0;
 
-        $(this).children('.grid-square').each(function() {
+        try {
+            $(this).children('.grid-square').each(function() {
 
-            $(this).css("background-color", gridDataJson["gridColorsArr"][row][col]);
-            col++;
-        });
+                $(this).css("background-color", gridDataJson["gridColorsArr"][row][col]);
+                col++;
+            });
+        } catch(error) {
+
+        }
 
         row++;
     });
