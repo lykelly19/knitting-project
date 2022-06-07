@@ -23,7 +23,6 @@ h1 {
   background-color: #1477F8;
   color: white;
   margin: 10px;
-  /*vertical-align: top;*/
   border:none;
 }
 
@@ -35,6 +34,16 @@ h1 {
     font-family: Montserrat, sans-serif;
     font-weight: 500;
     font-size: 16px;
+}
+
+#exportpage-button{
+  padding: 8px 14px;
+  border-radius: 20px;
+  background-color: #5FA4FE;
+  color: white;
+  font-family: Montserrat, sans-serif;
+  font-weight: 500;
+  font-size: 16px;
 }
 
 #clear-grid {
@@ -186,12 +195,6 @@ right: 300px;
   body {
     text-align: center;
 }
-
-
-
-
-
-
 
 
 .selected-square {
