@@ -40,7 +40,6 @@ h1 {
     font-size: 16px;
     filter: drop-shadow(0px 4px 4px rgba(100, 100, 100, 0.25));
     transform: matrix(1, 0, 0, 0, 0 );
-   
 }
 
 #swapPallete{
@@ -58,7 +57,7 @@ h1 {
   transform: matrix(1, 0, 0, 0, 0 );
 }
 
-#clear-grid {
+#clear-grid, #erase {
   vertical-align: top;
   border:none;
   border-radius: 20px;
