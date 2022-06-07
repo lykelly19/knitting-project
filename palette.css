@@ -214,6 +214,8 @@ button:hover {
 
 #continue-button {
     margin-left: 20px;
+    margin-top: 20px;
+    padding: 8px 14px;
     display: inline-block;
     background-color: #33373E;
 }
