@@ -6,7 +6,7 @@ const fs = require('fs');
 
 const rgba2hex = (rgba) => `#${rgba.match(/^rgba?\((\d+),\s*(\d+),\s*(\d+)(?:,\s*(\d+\.{0,1}\d*))?\)$/).slice(1).map((n, i) => (i === 3 ? Math.round(parseFloat(n) * 255) : parseFloat(n)).toString(16).padStart(2, '0').replace('NaN', '')).join('')}`
 
-function createGrid(totalRows, totalCols) {
+function createGrid(totalRows, totalCols, gaugeStitches, gaugeRows) {
 
     let count = 1
 //adds numbers to the top and bottom of grid 
@@ -80,6 +80,14 @@ function createGrid(totalRows, totalCols) {
                     .addClass("grid-box")
                 )
 
+
+
+    // modify CSS of grid square based on ratio
+    $(".grid-square").css({"width": gaugeRows});
+    $(".grid-square").css({"height": gaugeStitches});
+
+    $(".grid-box").css({"width": gaugeRows});
+    $(".grid-box").css({"height": gaugeStitches});
 }
 
 function createSelectedPaletteColors(colors) {
@@ -108,7 +116,7 @@ $(document).ready(function(){
 
     var gridDataJson = require('./grid-data.json');
 
-    createGrid(gridDataJson["canvasRows"], gridDataJson["canvasColumns"]);
+    createGrid(gridDataJson["canvasRows"], gridDataJson["canvasColumns"], gridDataJson["gaugeStitches"], gridDataJson["gaugeRows"]);
     setSavedGridColors();
     createSelectedPaletteColors(gridDataJson["selectedPaletteColors"]);
 
